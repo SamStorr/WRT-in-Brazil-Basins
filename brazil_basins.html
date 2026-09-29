@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brazil River Basins</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  html, body { height:100%; margin:0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+  #map { position:absolute; top:0; bottom:0; left:0; right:0; }
+
+  .panel {
+    background: rgba(255,255,255,0.94);
+    border-radius: 6px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.25);
+    padding: 10px 12px;
+  }
+
+  .info-panel {
+    position:absolute; top:12px; right:12px; z-index:1000;
+    width: 260px;
+    max-width: calc(100vw - 24px);
+  }
+  .info-panel h1 {
+    font-size: 15px;
+    margin: 0 0 4px;
+    color: #1b263b;
+  }
+  .info-panel .info-intro {
+    font-size: 11.5px;
+    margin: 0;
+    color: #555;
+    line-height: 1.35;
+  }
+  .info-panel .info-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1b263b;
+    margin: 0;
+  }
+
+  .basin-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #1b263b;
+    white-space: nowrap;
+    text-shadow:
+      -1px -1px 0 #fff, 1px -1px 0 #fff,
+      -1px  1px 0 #fff, 1px  1px 0 #fff,
+      0 0 3px #fff;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .leaflet-control-attribution { font-size: 10px; }
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="panel info-panel" id="info-panel">
+  <div id="info-placeholder">
+    <h1>Brazil River Basins</h1>
+    <p class="info-intro">Hover (or tap) a shaded basin to see its name.</p>
+  </div>
+  <h2 class="info-title" id="info-title" style="display:none;"></h2>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var DATA_URL = "basins_brazil.json";
+
+  var COLORS = ["#2a6f97", "#1b998b", "#b5651d", "#6a4c93", "#c1121f", "#588157"];
+
+  function defaultStyle(color) {
+    return { color: color, weight: 2, fillColor: color, fillOpacity: 0.35, opacity: 0.9 };
+  }
+  function hoverStyle(color) {
+    return { color: color, weight: 3, fillColor: color, fillOpacity: 0.6, opacity: 1 };
+  }
+
+  var map = L.map("map", { zoomControl: true }).setView([-14, -50], 4);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var basinLayerGroup = L.featureGroup().addTo(map);
+  var labelLayerGroup = L.layerGroup().addTo(map);
+  var basinLayers = [];
+
+  function updateInfoPanel(name) {
+    var placeholder = document.getElementById("info-placeholder");
+    var title = document.getElementById("info-title");
+    if (name) {
+      title.textContent = name;
+      title.style.display = "block";
+      placeholder.style.display = "none";
+    } else {
+      title.style.display = "none";
+      placeholder.style.display = "block";
+    }
+  }
+
+  function resetBasins() {
+    basinLayers.forEach(function (l) { l.setStyle(l._defaultStyle); });
+    updateInfoPanel(null);
+  }
+
+  function wireBasinLayer(layer, name, color) {
+    var def = defaultStyle(color);
+    var hov = hoverStyle(color);
+    layer._defaultStyle = def;
+    layer.setStyle(def);
+
+    layer.on("mouseover", function () { layer.setStyle(hov); updateInfoPanel(name); });
+    layer.on("mouseout",  function () { layer.setStyle(def); updateInfoPanel(null); });
+    layer.on("click", function (e) {
+      L.DomEvent.stopPropagation(e);
+      resetBasins();
+      layer.setStyle(hov);
+      updateInfoPanel(name);
+    });
+    basinLayers.push(layer);
+  }
+
+  map.on("click", resetBasins);
+
+  fetch(DATA_URL)
+    .then(function (r) {
+      if (!r.ok) throw new Error("Could not load " + DATA_URL + " (HTTP " + r.status + ")");
+      return r.json();
+    })
+    .then(function (data) {
+      data.features.forEach(function (f, i) {
+        var name = f.properties.name;
+        var color = COLORS[i % COLORS.length];
+
+        var layer = L.geoJSON(f);
+        layer.eachLayer(function (l) { wireBasinLayer(l, name, color); });
+        layer.addTo(basinLayerGroup);
+
+        if (name) {
+          var pt = turf.pointOnFeature(f);
+          var lng = pt.geometry.coordinates[0], lat = pt.geometry.coordinates[1];
+          var icon = L.divIcon({ className: "basin-label", html: name, iconSize: [0, 0] });
+          L.marker([lat, lng], { icon: icon, interactive: false }).addTo(labelLayerGroup);
+        }
+      });
+
+      map.fitBounds(basinLayerGroup.getBounds(), { padding: [20, 20] });
+    })
+    .catch(function (err) {
+      console.error(err);
+      document.getElementById("info-placeholder").innerHTML =
+        '<p style="color:#a00;">Failed to load ' + DATA_URL +
+        '. Make sure it sits in the same folder as this HTML file.</p>';
+    });
+})();
+</script>
+</body>
+</html>
