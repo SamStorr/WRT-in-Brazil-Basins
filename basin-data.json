@@ -1,4 +1,4 @@
-{basins:[
+{basins: [
   {name: "Itajaí", description: "placeholder", scores: {BP: [32, 38, 30], DP: [45, 33, 22], CC: [26, 46, 28]}, CF: [24, 41, 35]},
   {name: "Alto Tietê", description: "placeholder", scores: {BP: [21, 53, 26], DP: [22, 52, 26], CC: [19, 58, 23]}, CF: [17, 57, 26]},
   {name: "Paraíba do Sul", description: "placeholder", scores: {BP: [26, 24, 50], DP: [33, 36, 31], CC: [17, 34, 49]}, CF: [30, 33, 37]},
