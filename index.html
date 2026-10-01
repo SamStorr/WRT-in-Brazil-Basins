@@ -49,24 +49,58 @@
   .score-row { margin-top: 8px; }
   .score-row:first-of-type { margin-top: 0; }
   .score-label {
-    font-size: 10px;
+    font-size: 10.5px;
     font-weight: 600;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    color: #666;
+    line-height: 1.25;
+    color: #555;
     margin-bottom: 3px;
   }
   .score-bar {
     display: flex;
-    height: 9px;
+    height: 16px;
     border-radius: 4px;
     overflow: hidden;
     background: #eee;
   }
-  .score-seg { height: 100%; }
+  .score-seg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .score-seg span {
+    font-size: 9px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.35);
+    white-space: nowrap;
+  }
   .score-seg.seg-a { background: #4caf50; }
   .score-seg.seg-b { background: #fbc02d; }
   .score-seg.seg-c { background: #e53935; }
+
+  .score-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #e3e3e3;
+  }
+  .score-legend-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10.5px;
+    color: #555;
+  }
+  .score-legend-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
 
   .basin-label {
     font-size: 11px;
@@ -97,6 +131,11 @@
     <h2 class="info-title" id="info-title"></h2>
     <p class="info-desc" id="info-desc"></p>
     <div id="info-scores"></div>
+    <div class="score-legend">
+      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#4caf50;"></span>Strongly supported</div>
+      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#fbc02d;"></span>Partially supported</div>
+      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#e53935;"></span>Not included</div>
+    </div>
   </div>
 </div>
 
@@ -117,17 +156,29 @@
     return (s || "").replace(/[\u2010-\u2015]/g, "-").trim();
   }
 
+  var CATEGORY_LABELS = {
+    BP: "Water in the basin plans",
+    DP: "Water in sub-national development planning and governance",
+    CC: "Water and climate connections in specific sectors",
+    CF: "Links to climate financing and project implementation"
+  };
+
+  function seg(cls, value) {
+    return '<div class="score-seg ' + cls + '" style="flex:' + value + ' ' + value + ' 0">' +
+             '<span>' + value + '%</span>' +
+           '</div>';
+  }
+
   function buildScoreBars(scores) {
     var html = "";
     Object.keys(scores).forEach(function (cat) {
       var vals = scores[cat];
+      var label = CATEGORY_LABELS[cat] || cat;
       html +=
         '<div class="score-row">' +
-          '<div class="score-label">' + cat + '</div>' +
+          '<div class="score-label">' + label + '</div>' +
           '<div class="score-bar">' +
-            '<div class="score-seg seg-a" style="flex:' + vals[0] + ' ' + vals[0] + ' 0"></div>' +
-            '<div class="score-seg seg-b" style="flex:' + vals[1] + ' ' + vals[1] + ' 0"></div>' +
-            '<div class="score-seg seg-c" style="flex:' + vals[2] + ' ' + vals[2] + ' 0"></div>' +
+            seg("seg-a", vals[0]) + seg("seg-b", vals[1]) + seg("seg-c", vals[2]) +
           '</div>' +
         '</div>';
     });
