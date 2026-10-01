@@ -1,8 +1,64 @@
-{basins: [
-  {name: "Itajaí", description: "placeholder", scores: {BP: [32, 38, 30], DP: [45, 33, 22], CC: [26, 46, 28]}, CF: [24, 41, 35]},
-  {name: "Alto Tietê", description: "placeholder", scores: {BP: [21, 53, 26], DP: [22, 52, 26], CC: [19, 58, 23]}, CF: [17, 57, 26]},
-  {name: "Paraíba do Sul", description: "placeholder", scores: {BP: [26, 24, 50], DP: [33, 36, 31], CC: [17, 34, 49]}, CF: [30, 33, 37]},
-  {name: "São Francisco", description: "placeholder", scores: {BP: [47, 27, 26], DP: [64, 12, 24], CC: [51, 33, 16]}, CF: [48, 33, 20]},
-  {name: "Piancó–Piranhas–Açu", description: "placeholder", scores: {BP: [15, 29, 56], DP: [7, 64, 29], CC: [15, 33, 52]}, CF: [17, 37, 46]},
-  {name: "Tocantins–Araguaia", description: "placeholder", scores: {BP: [24, 44, 32], DP: [31, 36, 33], CC: [30, 42, 28]}, CF: [26, 30, 43]}
-]}
+{
+  "basins": [
+    {
+      "name": "Itajaí",
+      "description": "placeholder",
+      "scores": {
+        "BP": [32, 38, 30],
+        "DP": [45, 33, 22],
+        "CC": [26, 46, 28],
+        "CF": [24, 41, 35]
+      }
+    },
+    {
+      "name": "Alto Tietê",
+      "description": "placeholder",
+      "scores": {
+        "BP": [21, 53, 26],
+        "DP": [22, 52, 26],
+        "CC": [19, 58, 23],
+        "CF": [17, 57, 26]
+      }
+    },
+    {
+      "name": "Paraíba do Sul",
+      "description": "placeholder",
+      "scores": {
+        "BP": [26, 24, 50],
+        "DP": [33, 36, 31],
+        "CC": [17, 34, 49],
+        "CF": [30, 33, 37]
+      }
+    },
+    {
+      "name": "São Francisco",
+      "description": "placeholder",
+      "scores": {
+        "BP": [47, 27, 26],
+        "DP": [64, 12, 24],
+        "CC": [51, 33, 16],
+        "CF": [48, 33, 20]
+      }
+    },
+    {
+      "name": "Piancó–Piranhas–Açu",
+      "description": "placeholder",
+      "scores": {
+        "BP": [15, 29, 56],
+        "DP": [7, 64, 29],
+        "CC": [15, 33, 52],
+        "CF": [17, 37, 46]
+      }
+    },
+    {
+      "name": "Tocantins–Araguaia",
+      "description": "placeholder",
+      "scores": {
+        "BP": [24, 44, 32],
+        "DP": [31, 36, 33],
+        "CC": [30, 42, 28],
+        "CF": [26, 30, 43]
+      }
+    }
+  ]
+}
