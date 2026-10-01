@@ -2,62 +2,158 @@
   "basins": [
     {
       "name": "Itajaí",
-      "description": "placeholder",
+      "description": "One of southern Brazil's most economically dynamic regions, where cities built along riverbanks and floodplains face recurring flood risk, most severely during the 2008 disaster. Highlights the need for stronger flood risk management and climate adaptation.",
       "scores": {
-        "BP": [32, 38, 30],
-        "DP": [45, 33, 22],
-        "CC": [26, 46, 28],
-        "CF": [24, 41, 35]
+        "BP": [
+          32,
+          38,
+          30
+        ],
+        "DP": [
+          45,
+          33,
+          22
+        ],
+        "CC": [
+          26,
+          46,
+          28
+        ],
+        "CF": [
+          24,
+          41,
+          35
+        ]
       }
     },
     {
       "name": "Alto Tietê",
-      "description": "placeholder",
+      "description": "Supplies São Paulo's metropolitan region, home to over 20 million people and the country's largest industrial and economic center. Demand runs roughly double natural availability, requiring inter-basin transfers such as the Cantareira System, alongside persistent water quality, drainage and flood challenges.",
       "scores": {
-        "BP": [21, 53, 26],
-        "DP": [22, 52, 26],
-        "CC": [19, 58, 23],
-        "CF": [17, 57, 26]
+        "BP": [
+          21,
+          53,
+          26
+        ],
+        "DP": [
+          22,
+          52,
+          26
+        ],
+        "CC": [
+          19,
+          58,
+          23
+        ],
+        "CF": [
+          17,
+          57,
+          26
+        ]
       }
     },
     {
       "name": "Paraíba do Sul",
-      "description": "placeholder",
+      "description": "Southeast Brazil's main industrial corridor, spanning São Paulo, Rio de Janeiro and Minas Gerais and generating an estimated 12% of national GDP while supplying over 14 million people. Intensive land use and competing industrial, domestic and ecological demands call for stronger governance to secure long-term water security.",
       "scores": {
-        "BP": [26, 24, 50],
-        "DP": [33, 36, 31],
-        "CC": [17, 34, 49],
-        "CF": [30, 33, 37]
+        "BP": [
+          26,
+          24,
+          50
+        ],
+        "DP": [
+          33,
+          36,
+          31
+        ],
+        "CC": [
+          17,
+          34,
+          49
+        ],
+        "CF": [
+          30,
+          33,
+          37
+        ]
       }
     },
     {
       "name": "São Francisco",
-      "description": "placeholder",
+      "description": "Covering about 8% of Brazil across seven states, this is the Northeast's principal source of surface water, supporting over 12 million people and anchoring the region's largest irrigated fruit industry and a major hydroelectric complex. Recurrent droughts and heavy reliance on hydraulic infrastructure make water management central to regional development.",
       "scores": {
-        "BP": [47, 27, 26],
-        "DP": [64, 12, 24],
-        "CC": [51, 33, 16],
-        "CF": [48, 33, 20]
+        "BP": [
+          47,
+          27,
+          26
+        ],
+        "DP": [
+          64,
+          12,
+          24
+        ],
+        "CC": [
+          51,
+          33,
+          16
+        ],
+        "CF": [
+          48,
+          33,
+          20
+        ]
       }
     },
     {
       "name": "Piancó–Piranhas–Açu",
-      "description": "placeholder",
+      "description": "A semi-arid basin in Paraíba and Rio Grande do Norte sustaining domestic supply, irrigation and livestock for around 1.5 million people. Rivers run dry during droughts, crystalline bedrock limits aquifer recharge, and high evaporation drives chronic water deficits, prompting major reservoirs and an inter-basin transfer from the São Francisco River.",
       "scores": {
-        "BP": [15, 29, 56],
-        "DP": [7, 64, 29],
-        "CC": [15, 33, 52],
-        "CF": [17, 37, 46]
+        "BP": [
+          15,
+          29,
+          56
+        ],
+        "DP": [
+          7,
+          64,
+          29
+        ],
+        "CC": [
+          15,
+          33,
+          52
+        ],
+        "CF": [
+          17,
+          37,
+          46
+        ]
       }
     },
     {
       "name": "Tocantins–Araguaia",
-      "description": "placeholder",
+      "description": "Spanning roughly 11% of the country at the transition between the Cerrado and Amazon biomes, this basin is a major agricultural, energy and logistics frontier, hosting a large hydroelectric complex and inland waterway. Rapid agricultural expansion and deforestation place growing pressure on water resources, demanding integrated long-term planning.",
       "scores": {
-        "BP": [24, 44, 32],
-        "DP": [31, 36, 33],
-        "CC": [30, 42, 28],
-        "CF": [26, 30, 43]
+        "BP": [
+          24,
+          44,
+          32
+        ],
+        "DP": [
+          31,
+          36,
+          33
+        ],
+        "CC": [
+          30,
+          42,
+          28
+        ],
+        "CF": [
+          26,
+          30,
+          43
+        ]
       }
     }
   ]
