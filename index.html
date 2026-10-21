@@ -36,6 +36,8 @@
     padding: 10px 12px;
   }
 
+.leaflet-tile-pane { filter: contrast(0.5) brightness(1.3); }
+
   .info-panel {
     position:absolute; top:12px; right:12px; z-index:1000;
     width: 260px;
@@ -102,9 +104,9 @@
     text-shadow: 0 1px 1px rgba(0,0,0,0.35);
     white-space: nowrap;
   }
-  .score-seg.seg-a { background: #4caf50; }
-  .score-seg.seg-b { background: #fbc02d; }
-  .score-seg.seg-c { background: #e53935; }
+  .score-seg.seg-a { background: #59918C; }
+  .score-seg.seg-b { background: #C9A934; }
+  .score-seg.seg-c { background: #B54D6C; }
 
   .score-legend {
     display: flex;
@@ -168,9 +170,9 @@
     <p class="info-desc" id="info-desc"></p>
     <div id="info-scores"></div>
     <div class="score-legend">
-      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#4caf50;"></span>Strongly supported</div>
-      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#fbc02d;"></span>Partially supported</div>
-      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#e53935;"></span>Not included</div>
+      <div class="score-legend-row"><span class ="" class="score-legend-swatch" style="background:#59918C;"></span>Strongly supported</div>
+      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#C9A934;"></span>Partially supported</div>
+      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#B54D6C;"></span>Not included</div>
     </div>
   </div>
 </div>
@@ -185,7 +187,8 @@
   var INFO_URL = "basin-data.json";
   var RIVERS_URL = "brazil_rivers_slim.json";
 
-  var COLORS = ["#e9c46a", "#f4a261", "#e76f51", "#b8a9d9", "#a3c9a8", "#d9a5b3"];
+  //var COLORS = ["#e9c46a", "#f4a261", "#e76f51", "#b8a9d9", "#a3c9a8", "#d9a5b3"];
+  var COLORS = ["#F7941F", "#F7941F", "#F7941F", "#F7941F", "#F7941F", "#F7941F"];
 
   // The two data files spell some basin names with different dash characters
   // (non-breaking hyphen vs. en dash) — normalize before matching on name.
@@ -223,10 +226,10 @@
   }
 
   function defaultStyle(color) {
-    return { color: color, weight: 2, fillColor: color, fillOpacity: 0.35, opacity: 0.9 };
+    return { color: color, weight: 2, fillColor: color, fillOpacity: 0.3, opacity: 1 };
   }
   function hoverStyle(color) {
-    return { color: color, weight: 3, fillColor: color, fillOpacity: 0.6, opacity: 1 };
+    return { color: color, weight: 3, fillColor: color, fillOpacity: 0.5, opacity: 1 };
   }
 
   var map = L.map("map", { zoomControl: true }).setView([-14, -50], 4);
@@ -260,6 +263,16 @@
     updateInfoPanel(null);
   }
 
+fetch("brazil_outline.json")
+  .then(function (r) { return r.json(); })
+  .then(function (data) {
+    L.geoJSON(data, {
+      interactive: false,
+      style: { color: "#1A69B2", weight: 2, opacity: 1, fill: false }
+    }).addTo(map);
+  })
+  .catch(console.error);
+
   function wireBasinLayer(layer, name, color, info) {
     var def = defaultStyle(color);
     var hov = hoverStyle(color);
@@ -281,7 +294,7 @@
 
   // ---- Rivers (line width/colour by size) ----
 //var RIVER_COLORS = { 5: "#4292c6", 4: "#2a5599", 3: "#17254d", 2: "#0b1230", 1: "#0b1230" };
-  var RIVER_COLORS = { 5: "#17254d", 4: "#17254d", 3: "#17254d", 2: "#17254d", 1: "#17254d" };
+  var RIVER_COLORS = { 5: "#29ABE3", 4: "#29ABE3", 3: "#29ABE3", 2: "#29ABE3", 1: "#29ABE3" };
 
 // Own pane: above basin fills (overlayPane = 400), below labels (markerPane = 600),
 // and transparent to the mouse so basin hover/click still works.
@@ -300,7 +313,7 @@ fetch(RIVERS_URL)
       renderer: L.canvas({ pane: "rivers" }),
       interactive: false,
       style: function (f) {
-        return { color: RIVER_COLORS[f.properties.o], weight: f.properties.w * 0.8, opacity: 0.5 };
+        return { color: RIVER_COLORS[f.properties.o], weight: f.properties.w * 0.8, opacity: 0.7 };
       }
     }).addTo(map);
     L.control.layers(null, { "Rivers (by size)": riversLayer }, { collapsed: false }).addTo(map);
