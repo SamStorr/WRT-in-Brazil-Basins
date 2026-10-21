@@ -183,6 +183,7 @@
 
   var SHAPES_URL = "basins_brazil.json";
   var INFO_URL = "basin-data.json";
+  var RIVERS_URL = "brazil_rivers_slim.json";
 
   var COLORS = ["#2a6f97", "#1b998b", "#b5651d", "#6a4c93", "#c1121f", "#588157"];
 
@@ -277,6 +278,33 @@
   }
 
   map.on("click", resetBasins);
+
+  // ---- Rivers (line width/colour by size) ----
+var RIVER_COLORS = { 5: "#4292c6", 4: "#2a5599", 3: "#17254d", 2: "#0b1230", 1: "#0b1230" };
+
+// Own pane: above basin fills (overlayPane = 400), below labels (markerPane = 600),
+// and transparent to the mouse so basin hover/click still works.
+map.createPane("rivers");
+map.getPane("rivers").style.zIndex = 450;
+map.getPane("rivers").style.pointerEvents = "none";
+
+fetch(RIVERS_URL)
+  .then(function (r) {
+    if (!r.ok) throw new Error("Could not load " + RIVERS_URL + " (HTTP " + r.status + ")");
+    return r.json();
+  })
+  .then(function (data) {
+    var riversLayer = L.geoJSON(data, {
+      pane: "rivers",
+      renderer: L.canvas({ pane: "rivers" }),
+      interactive: false,
+      style: function (f) {
+        return { color: RIVER_COLORS[f.properties.o], weight: f.properties.w, opacity: 0.9 };
+      }
+    }).addTo(map);
+    L.control.layers(null, { "Rivers (by size)": riversLayer }, { collapsed: false }).addTo(map);
+  })
+  .catch(function (err) { console.error(err); });
 
   function fetchJSON(url) {
     return fetch(url).then(function (r) {
