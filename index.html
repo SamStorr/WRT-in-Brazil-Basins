@@ -9,16 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <style>
-  /* ---------------------------------------------------------------------
-     Panel text styling — change these four values to restyle every piece
-     of text in the info panel (map/graph colors are set separately,
-     further down, in COLORS and seg-a/seg-b/seg-c).
-     --panel-title-color / --panel-title-size : the basin name / "Brazil
-                            River Basins" heading
-     --panel-text-color  / --panel-text-size  : every other line of text
-                            in the panel (intro, description, score-bar
-                            labels, legend)
-     --------------------------------------------------------------------- */
   :root {
     --panel-title-color: #1b263b;
     --panel-title-size:  1em;
@@ -104,9 +94,9 @@
     text-shadow: 0 1px 1px rgba(0,0,0,0.35);
     white-space: nowrap;
   }
-  .score-seg.seg-a { background: #59918C; }
-  .score-seg.seg-b { background: #C9A934; }
-  .score-seg.seg-c { background: #B54D6C; }
+  .score-seg.seg-a { background: #25B173; }
+  .score-seg.seg-b { background: #F7941F; }
+  .score-seg.seg-c { background: #012030; }
 
   .score-legend {
     display: flex;
@@ -170,9 +160,9 @@
     <p class="info-desc" id="info-desc"></p>
     <div id="info-scores"></div>
     <div class="score-legend">
-      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#59918C;"></span>Strongly supported</div>
-      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#C9A934;"></span>Partially supported</div>
-      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#B54D6C;"></span>Not included</div>
+      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#25B173;"></span>Strongly supported</div>
+      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#F7941F;"></span>Partially supported</div>
+      <div class="score-legend-row"><span class="score-legend-swatch" style="background:#012030;"></span>Not included</div>
     </div>
   </div>
 </div>
@@ -188,7 +178,7 @@
   var RIVERS_URL = "brazil_rivers_slim.json";
 
   //var COLORS = ["#e9c46a", "#f4a261", "#e76f51", "#b8a9d9", "#a3c9a8", "#d9a5b3"];
-  var COLORS = ["#F7941F", "#F7941F", "#F7941F", "#F7941F", "#F7941F", "#F7941F"];
+  var COLORS = ["#1A69B2", "#1A69B2", "#1A69B2", "#1A69B2", "#1A69B2", "#1A69B2"];
 
   // The two data files spell some basin names with different dash characters
   // (non-breaking hyphen vs. en dash) — normalize before matching on name.
@@ -268,7 +258,7 @@ fetch("brazil_outline.json")
   .then(function (data) {
     L.geoJSON(data, {
       interactive: false,
-      style: { color: "#1A69B2", weight: 2, opacity: 1, fill: false }
+      style: { color: "#25B173", weight: 2, opacity: 1, fill: false }
     }).addTo(map);
   })
   .catch(console.error);
@@ -313,7 +303,7 @@ fetch(RIVERS_URL)
       renderer: L.canvas({ pane: "rivers" }),
       interactive: false,
       style: function (f) {
-        return { color: RIVER_COLORS[f.properties.o], weight: f.properties.w * 0.8, opacity: 0.7 };
+        return { color: RIVER_COLORS[f.properties.o], weight: f.properties.w * 0.5, opacity: 0.6 };
       }
     }).addTo(map);
     L.control.layers(null, { "Rivers (by size)": riversLayer }, { collapsed: false }).addTo(map);
