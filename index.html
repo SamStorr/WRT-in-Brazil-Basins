@@ -280,7 +280,8 @@
   map.on("click", resetBasins);
 
   // ---- Rivers (line width/colour by size) ----
-var RIVER_COLORS = { 5: "#4292c6", 4: "#2a5599", 3: "#17254d", 2: "#0b1230", 1: "#0b1230" };
+//var RIVER_COLORS = { 5: "#4292c6", 4: "#2a5599", 3: "#17254d", 2: "#0b1230", 1: "#0b1230" };
+  var RIVER_COLORS = { 5: "#2a5599", 4: "#2a5599", 3: "#2a5599", 2: "#2a5599", 1: "#2a5599" };
 
 // Own pane: above basin fills (overlayPane = 400), below labels (markerPane = 600),
 // and transparent to the mouse so basin hover/click still works.
@@ -299,7 +300,7 @@ fetch(RIVERS_URL)
       renderer: L.canvas({ pane: "rivers" }),
       interactive: false,
       style: function (f) {
-        return { color: RIVER_COLORS[f.properties.o], weight: f.properties.w, opacity: 0.9 };
+        return { color: RIVER_COLORS[f.properties.o], weight: f.properties.w, opacity: 0.7 };
       }
     }).addTo(map);
     L.control.layers(null, { "Rivers (by size)": riversLayer }, { collapsed: false }).addTo(map);
