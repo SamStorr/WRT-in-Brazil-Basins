@@ -185,7 +185,7 @@
   var INFO_URL = "basin-data.json";
   var RIVERS_URL = "brazil_rivers_slim.json";
 
-  var COLORS = ["#2a6f97", "#1b998b", "#b5651d", "#6a4c93", "#c1121f", "#588157"];
+  var COLORS = ["#e9c46a", "#f4a261", "#e76f51", "#b8a9d9", "#a3c9a8", "#d9a5b3"];
 
   // The two data files spell some basin names with different dash characters
   // (non-breaking hyphen vs. en dash) — normalize before matching on name.
@@ -281,8 +281,7 @@
   map.on("click", resetBasins);
 
   // ---- Rivers (line width/colour by size) ----
-//var RIVER_COLORS = { 5: "#4292c6", 4: "#2a5599", 3: "#17254d", 2: "#0b1230", 1: "#0b1230" };
-  var RIVER_COLORS = { 5: "#2a5599", 4: "#2a5599", 3: "#2a5599", 2: "#2a5599", 1: "#2a5599" };
+var RIVER_COLORS = { 5: "#4292c6", 4: "#2a5599", 3: "#17254d", 2: "#0b1230", 1: "#0b1230" };
 
 // Own pane: above basin fills (overlayPane = 400), below labels (markerPane = 600),
 // and transparent to the mouse so basin hover/click still works.
