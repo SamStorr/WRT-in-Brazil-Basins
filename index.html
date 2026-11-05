@@ -144,7 +144,7 @@
   <div id="info-placeholder">
     <h1>Brazil River Basins</h1>
     <span class="info-intro">
-      <p>Hover (or tap) a shaded basin to see its description and scores in the WRT assessment.</p>
+      <p>Click a shaded basin to see its description and scores in the WRT assessment. Click outside the basins to return here.</p>
       <details>
         <summary style="padding-top: 10px; padding-bottom: 10px; cursor: pointer;">How the scoring works</summary>
       <p><b>Water in basin plans</b> assesses whether climate and water risks are understood and adequately considered</p>
@@ -232,6 +232,7 @@
   var basinLayerGroup = L.featureGroup().addTo(map);
   var labelLayerGroup = L.layerGroup().addTo(map);
   var basinLayers = [];
+  var selectedBasin = null;
 
   function updateInfoPanel(name, info) {
     var placeholder = document.getElementById("info-placeholder");
@@ -250,6 +251,7 @@
 
   function resetBasins() {
     basinLayers.forEach(function (l) { l.setStyle(l._defaultStyle); });
+    selectedBasin = null;
     updateInfoPanel(null);
   }
 
@@ -269,11 +271,10 @@ fetch("brazil_outline.json")
     layer._defaultStyle = def;
     layer.setStyle(def);
 
-    layer.on("mouseover", function () { layer.setStyle(hov); updateInfoPanel(name, info); });
-    layer.on("mouseout",  function () { layer.setStyle(def); updateInfoPanel(null); });
     layer.on("click", function (e) {
       L.DomEvent.stopPropagation(e);
-      resetBasins();
+      if (selectedBasin) selectedBasin.setStyle(selectedBasin._defaultStyle);
+      selectedBasin = layer;
       layer.setStyle(hov);
       updateInfoPanel(name, info);
     });
