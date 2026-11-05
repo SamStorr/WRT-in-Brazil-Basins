@@ -28,7 +28,7 @@
     },
     {
       "name": "Alto Tietê",
-      "description": "Supplies São Paulo's metropolitan region, home to over 20 million people and the country's largest industrial and economic center. Demand runs roughly double natural availability, requiring inter-basin transfers such as the Cantareira System, alongside persistent water quality, drainage and flood challenges.",
+      "description": "Home to São Paulo and 39 other municipalities, over 20 million people depend on the Alto Tietê basin, which underpins the country’s most significant center of employment, industrial production, and economic activity. Water demand is approximately double availability, so the region must rely on inter-basin transfers, notably from the Cantareira System, to meet its needs. Intense land use, combined with persistent challenges related to water quality, urban drainage, flooding, and climate change variability, acutely illustrates the need to integrate urban planning, water‑resource management, and climate adaptation.",
       "scores": {
         "BP": [
           21,
@@ -54,7 +54,7 @@
     },
     {
       "name": "Paraíba do Sul",
-      "description": "Southeast Brazil's main industrial corridor, spanning São Paulo, Rio de Janeiro and Minas Gerais and generating an estimated 12% of national GDP while supplying over 14 million people. Intensive land use and competing industrial, domestic and ecological demands call for stronger governance to secure long-term water security.",
+      "description": "The Paraíba do Sul River Basin spans three states and serves as the principal industrial hub of the Southeast region, accounting for an estimated 12% of national GDP. While supplying water to over 14 million inhabitants, it also critically sustains ecosystems and maintains biodiversity. Robust governance and integrated planning are helping build resilience to overcome the challenge of harmonizing economic growth, environmental conservation, and water security.",
       "scores": {
         "BP": [
           26,
@@ -80,7 +80,7 @@
     },
     {
       "name": "São Francisco",
-      "description": "Covering about 8% of Brazil across seven states, this is the Northeast's principal source of surface water, supporting over 12 million people and anchoring the region's largest irrigated fruit industry and a major hydroelectric complex. Recurrent droughts and heavy reliance on hydraulic infrastructure make water management central to regional development.",
+      "description": "Among Brazil’s most strategic hydrological regions, the São Francisco River Basin encompasses roughly 8% of Brazil’s territory, extending across seven states and serves as the principal source of surface water for the Northeast. The São Francisco River Integration Project has served over 12 million people and reshaped the economy of the Northeastern interior, now Brazil’s largest center for irrigated fruit cultivation and exports. In addition, it is host to a major hydroelectric complex. However, recurrent droughts and reliance on extensive hydraulic infrastructure demonstrate the value of resilience strategies in water‑scarce and climate‑vulnerable territories.",
       "scores": {
         "BP": [
           47,
@@ -106,7 +106,7 @@
     },
     {
       "name": "Piancó–Piranhas–Açu",
-      "description": "A semi-arid basin in Paraíba and Rio Grande do Norte sustaining domestic supply, irrigation and livestock for around 1.5 million people. Rivers run dry during droughts, crystalline bedrock limits aquifer recharge, and high evaporation drives chronic water deficits, prompting major reservoirs and an inter-basin transfer from the São Francisco River.",
+      "description": "In the semi-arid hinterland of the sertão, the Piancó-Piranhas-Açu River Basin constitutes the economic and social foundation of this sparsely populated region spanning two states. It is also one of Brazil’s regions that is most vulnerable to climate change, experiencing recurring extreme droughts that make watercourses dry up completely. This pronounced water deficit has led to the construction of extensive infrastructure to support domestic and agricultural water supply, including reservoirs and inter-basin transfer canals that convey water from the São Francisco River.",
       "scores": {
         "BP": [
           15,
@@ -132,7 +132,7 @@
     },
     {
       "name": "Tocantins–Araguaia",
-      "description": "Spanning roughly 11% of the country at the transition between the Cerrado and Amazon biomes, this basin is a major agricultural, energy and logistics frontier, hosting a large hydroelectric complex and inland waterway. Rapid agricultural expansion and deforestation place growing pressure on water resources, demanding integrated long-term planning.",
+      "description": "Critically located between the Cerrado and the Amazon biomes, the Tocantins-Araguaia River Basin has emerged as one of the nation’s foremost economic, logistical, and energy frontiers. This waterway connects the Center-West of Brazil to northern ports, forming a strategic and lower-cost transportation route for grain and mineral exportation. As a leading frontier of agricultural and livestock expansion, the region faces intense pressure from deforestation and large-scale irrigation. It also contains one of Brazil’s major hydroelectric complexes. The rapid pace of land-use transformation calls for integrated planning capable of balancing economic growth, environmental protection, and long-term water security.",
       "scores": {
         "BP": [
           24,
